@@ -35,7 +35,9 @@ $(function() {
   $("#form").submit(function(event){
     event.preventDefault();
     var inputNumber = $("#inputNumber").val();
+    inputNumber = Math.abs(inputNumber).toString();
     var result = romanNumerals(inputNumber);
-    $("#result").append(inputNumber + " = " + result);
+    $("#result").append(inputNumber + " = " + result + '<br>');
+    $("#form").trigger("reset");
   });
 });
