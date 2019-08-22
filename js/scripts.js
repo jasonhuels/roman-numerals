@@ -1,5 +1,6 @@
+////// Business Logic ///////////
 
-function romanNumerals (input) {
+function romanNumerals(input) {
   var ones = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"];
   var tens = ["X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"];
   var cent = ["C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"];
@@ -18,9 +19,23 @@ function romanNumerals (input) {
       output.push(rn[i][digits[i]-1]);
     }
   } else {
-    return "Roman Numerals only go up to 3,999."
+    output = "Roman Numerals only go up to 3,999."
   }
 
-  output = output.reverse().join("");
+  if(typeof output === "object") {
+    output = output.reverse().join("");
+  }
+
   return output;
 }
+
+//////////// UI Logic//////////////
+
+$(function() {
+  $("#form").submit(function(event){
+    event.preventDefault();
+    var inputNumber = $("#inputNumber").val();
+    var result = romanNumerals(inputNumber);
+    $("#result").append(inputNumber + " = " + result);
+  });
+});
