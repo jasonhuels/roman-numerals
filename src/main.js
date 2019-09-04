@@ -14,5 +14,3 @@ $(function() {
     $("#form").trigger("reset");
   });
 });
-romanNumerals();
-$();
