@@ -1,6 +1,6 @@
 ////// Business Logic ///////////
 
-function romanNumerals(input) {
+export function romanNumerals(input) {
   var ones = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"];
   var tens = ["X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"];
   var cent = ["C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"];
@@ -9,17 +9,17 @@ function romanNumerals(input) {
 
   var digits = input.split("");
   digits.reverse();
-  for(var i=0; i<digits.length; i++) {
+  for(let i=0; i<digits.length; i++) {
     digits[i] = parseInt(digits[i]);
   }
   var output = [];
 
   if(parseInt(input) <= 3999) {
-    for(var i=0; i<digits.length; i++) {
+    for(let i=0; i<digits.length; i++) {
       output.push(rn[i][digits[i]-1]);
     }
   } else {
-    output = "Roman Numerals only go up to 3,999."
+    output = "Roman Numerals only go up to 3,999.";
   }
 
   if(typeof output === "object") {
@@ -28,16 +28,3 @@ function romanNumerals(input) {
 
   return output;
 }
-
-//////////// UI Logic//////////////
-
-$(function() {
-  $("#form").submit(function(event){
-    event.preventDefault();
-    var inputNumber = $("#inputNumber").val();
-    inputNumber = Math.abs(inputNumber).toString();
-    var result = romanNumerals(inputNumber);
-    $("#result").append(inputNumber + " = " + result + '<br>');
-    $("#form").trigger("reset");
-  });
-});
